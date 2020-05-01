@@ -29,7 +29,10 @@ export default {
         .post("auth/login", this.usuario)
         .then(response => {
           console.log(response);
-          localStorage.setItem("token", response.data.access_token);
+          this.$store.commit("DEFINIR_USUARIO_LOGADO", {
+            token: response.data.access_token,
+            usuario: response.data.user
+          });
           this.$router.push({ name: "gerentes" });
         })
         .catch(erro => console.log(erro));
