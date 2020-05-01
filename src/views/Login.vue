@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
@@ -27,7 +25,7 @@ export default {
   },
   methods: {
     efetuarLogin() {
-      axios
+      this.$http
         .post("http://localhost:8000/auth/login", this.usuario)
         .then(response => {
           console.log(response);

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Gerente from '@/components/Gerente.vue'
+import Gerente from "@/components/Gerente.vue";
 
 export default {
   components: {
@@ -16,25 +16,17 @@ export default {
   },
   data() {
     return {
-      gerentes: [
-        {
-          nome: 'Paulo',
-          agencia: 1000
-        },
-        {
-          nome: 'Guilherme',
-          agencia: 2000
-        },
-        {
-          nome: 'Ricardo',
-          agencia: 3000
-        }
-      ]
-    }
+      gerentes: []
+    };
+  },
+  mounted() {
+    this.$http
+      .get("gerentes")
+      .then(response => (this.gerentes = response.data))
+      .catch(erro => console.log(erro));
   }
-}
+};
 </script>
 
 <style>
-
 </style>
