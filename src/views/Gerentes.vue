@@ -19,7 +19,15 @@ export default {
       gerentes: []
     };
   },
+  computed: {
+    usuarioEstaLogado: function () {
+      return this.$store.state.token
+    }
+  },
   mounted() {
+    if (!this.usuarioEstaLogado) {
+      this.$router.push({ name: 'login' })
+    }
     this.$http
       .get("gerentes")
       .then(response => (this.gerentes = response.data))
